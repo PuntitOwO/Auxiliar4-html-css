@@ -1,1 +1,50 @@
 /* Poner sus estilos acá */
+body {
+    background-image: url('https://external-preview.redd.it/uhq5zTcMPM3tOW_fbUz4PayDt_5pkEXdyXXoRWs3XOg.jpg?auto=webp&s=e06461124c1ccfdba7e9ece763b644ff68eeb06b');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.window {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.window.active {
+    cursor: move;
+    user-select: none;
+}
+
+.window-body, .title-bar-text {
+    font-size: large;
+}
+
+.crear {
+    margin-top: 10px;
+}
+
+.taskbar img {
+    position: absolute;
+    display: flex;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    
+}
+
+.start {
+    position: absolute;
+    display: flex;
+    z-index: 150;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+}

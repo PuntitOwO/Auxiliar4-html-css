@@ -1,44 +1,100 @@
 <!DOCTYPE html>
         <html lang="en">
         <head>
-           <meta charset="UTF-8">
-           <title>Registro</title>
+            <meta charset="UTF-8">
+            <link rel="stylesheet" type="text/css" href="static/todoapp/style.css">
+            <link rel="stylesheet" href="https://unpkg.com/xp.css">
+            <title>Registro</title>
         </head>
         <body>
-           <h1> Registro </h1>
-           <form method="post">
-               {% csrf_token %}
-               <div>
-                   <label for="nombre_usuario">Nombre</label>
-                   <input type="text" id=nombre_usuario name="nombre" required>
-               </div>
-
-               <div>
-                   <label for="contraseña">Contraseña</label>
-                   <input type="password" id="contraseña" name="contraseña" required>
-               </div>
-
-                <div>
-                   <label for="apodo">Apodo</label>
-                   <input type="text" id="apodo" name="apodo" required>
+            <div class="window">
+            <div class="title-bar">
+                <div class="title-bar-text">Registro</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button class="close-button" aria-label="Close"></button>
                 </div>
+            </div>
+            <div class="window-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="field-row-stacked">
+                        <label for="nombre_usuario">Nombre</label>
+                        <input type="text" id=nombre_usuario name="nombre" required>
+                    </div>
 
-               <div>
-                   <label for="pronombre">Pronombre</label>
-                   <select id="pronombre" name="pronombre" required>
-                       <option value="">Elige un pronombre</option>
-                       <option value="El">El</option>
-                       <option value="La">La</option>
-                       <option value="Le">Le</option>
-                       <option value="Otro">Otro</option>
-                   </select>
-               </div>
+                    <div class="field-row-stacked">
+                        <label for="contraseña">Contraseña</label>
+                        <input type="password" id="contraseña" name="contraseña" required>
+                    </div>
 
-                <div>
-                    <label for="mail">Mail</label>
-                    <input type="email" id="mail" name="mail" required>
-                </div>
-                <button type="submit">Crear usuario</button>
-           </form>
+                    <div class="field-row-stacked">
+                        <label for="apodo">Apodo</label>
+                        <input type="text" id="apodo" name="apodo" required>
+                    </div>
+                    
+                    <div class="field-row-stacked">
+                        <label for="pronombre">Pronombre</label>
+                        <select id="pronombre" name="pronombre" required>
+                            <option value="">Elige un pronombre</option>
+                            <option value="El">El</option>
+                            <option value="La">La</option>
+                            <option value="Le">Le</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="field-row-stacked">
+                        <label for="mail">Mail</label>
+                        <input type="email" id="mail" name="mail" required>
+                    </div>
+                    <button class="crear" type="submit">Crear usuario</button>
+                </form>
+            </div>
+            <div class="status-bar">
+                <p class="status-bar-field">&lt;spam&gt;Sección de spam&lt;/spam&gt;</p>
+                <p class="status-bar-field">Visit <a target="_blank" href="https://botoxparty.github.io/XP.css/">XP.css</a>!</p>
+                <p class="status-bar-field">Visit <a target="_blank" href="https:puntito.cl">puntito.cl</a>!</p>
+            </div>
+
+            </div>
+
+            <div class="taskbar">
+                <img src="static/todoapp/taskbar.png" alt="taskbar">
+            </div>
+            <div class="start">
+                <img src="static/todoapp/xp-start.png" alt="Start button">
+            </div>
+
+            <script>
+                const draggable = document.querySelector(".window");
+                
+                function onDrag({movementX, movementY}) {
+                    let getStyle = window.getComputedStyle(draggable);
+                    let left = parseInt(getStyle.left);
+                    let top = parseInt(getStyle.top);
+                    draggable.style.left = `${left + movementX}px`;
+                    draggable.style.top = `${top + movementY}px`;
+                }
+                
+                draggable.addEventListener("mousedown", ()=>{
+                    draggable.classList.add("active");
+                    draggable.addEventListener("mousemove", onDrag);
+                });
+                document.addEventListener("mouseup", ()=>{
+                    draggable.classList.remove("active");
+                    draggable.removeEventListener("mousemove", onDrag);
+                })
+                
+
+                const closeButton = document.querySelector(".close-button");
+                
+                closeButton.addEventListener("click", ()=>{
+                    draggable.parentNode.removeChild(draggable);
+                });
+
+
+            </script>
         </body>
         </html>
